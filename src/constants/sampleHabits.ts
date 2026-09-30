@@ -60,7 +60,7 @@ const SAMPLES: SampleHabit[] = [
   {
     name: 'İngilizce kelime çalış',
     description: 'Her gün 10 yeni kelime.',
-    icon: '🇬🇧',
+    icon: '🔤',
     color: 'rose',
     category: 'egitim',
     createdDaysAgo: 3,

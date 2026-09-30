@@ -1,5 +1,6 @@
-import { Moon, Sun } from 'lucide-react'
+import { Moon, Sun, TriangleAlert, X } from 'lucide-react'
 import { Link, NavLink, Outlet } from 'react-router'
+import { useHabits } from '../hooks/useHabits'
 import { useTheme } from '../hooks/useTheme'
 import { Logo } from './Logo'
 
@@ -10,6 +11,7 @@ const navItems = [
 
 export function Layout() {
   const { theme, toggleTheme } = useTheme()
+  const { storageError, dismissStorageError } = useHabits()
   const isDark = theme === 'dark'
 
   return (
@@ -60,6 +62,23 @@ export function Layout() {
       </header>
 
       <main id="icerik" className="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-6">
+        {storageError && (
+          <div
+            role="alert"
+            className="mb-6 flex items-start gap-3 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-200"
+          >
+            <TriangleAlert className="mt-0.5 size-5 shrink-0" aria-hidden />
+            <p className="flex-1">{storageError}</p>
+            <button
+              type="button"
+              onClick={dismissStorageError}
+              className="-my-1 grid size-7 place-items-center rounded-lg hover:bg-amber-100 dark:hover:bg-amber-500/20"
+              aria-label="Uyarıyı kapat"
+            >
+              <X className="size-4" aria-hidden />
+            </button>
+          </div>
+        )}
         <Outlet />
       </main>
 

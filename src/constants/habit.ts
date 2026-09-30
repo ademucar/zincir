@@ -6,8 +6,28 @@ export const DESCRIPTION_MAX_LENGTH = 150
 
 export const HABIT_ICONS = [
   '💧', '📚', '🏃', '🧘', '💪', '🥗', '😴', '✍️',
-  '🎯', '🧠', '🎸', '🌱', '💻', '🇬🇧', '🚶', '🧹',
+  '🎯', '🧠', '🎸', '🌱', '💻', '🔤', '🚶', '🧹',
 ] as const
+
+/** Ekran okuyucular için simge adları */
+export const HABIT_ICON_LABELS: Record<(typeof HABIT_ICONS)[number], string> = {
+  '💧': 'Su damlası',
+  '📚': 'Kitaplar',
+  '🏃': 'Koşu',
+  '🧘': 'Meditasyon',
+  '💪': 'Kas',
+  '🥗': 'Salata',
+  '😴': 'Uyku',
+  '✍️': 'Yazı yazma',
+  '🎯': 'Hedef',
+  '🧠': 'Beyin',
+  '🎸': 'Gitar',
+  '🌱': 'Filiz',
+  '💻': 'Bilgisayar',
+  '🔤': 'Dil öğrenme',
+  '🚶': 'Yürüyüş',
+  '🧹': 'Temizlik',
+}
 
 export const HABIT_CATEGORIES: Record<HabitCategory, string> = {
   saglik: 'Sağlık',

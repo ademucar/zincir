@@ -1,5 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router'
 import { Layout } from './components/Layout'
+import { ToastProvider } from './components/ToastProvider'
+import { HabitsProvider } from './context/HabitsProvider'
 import { HabitDetailPage } from './pages/HabitDetailPage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import { StatsPage } from './pages/StatsPage'
@@ -18,5 +20,11 @@ const router = createBrowserRouter([
 ])
 
 export default function App() {
-  return <RouterProvider router={router} />
+  return (
+    <HabitsProvider>
+      <ToastProvider>
+        <RouterProvider router={router} />
+      </ToastProvider>
+    </HabitsProvider>
+  )
 }
