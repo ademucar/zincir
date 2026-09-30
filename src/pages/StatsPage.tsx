@@ -46,6 +46,7 @@ export function StatsPage() {
   if (habits.length === 0) {
     return (
       <section>
+        <title>İstatistikler · Zincir</title>
         <h1 className="text-3xl font-bold tracking-tight">İstatistikler</h1>
         <div className="mt-8">
           <EmptyState
@@ -67,6 +68,7 @@ export function StatsPage() {
 
   return (
     <section>
+      <title>İstatistikler · Zincir</title>
       <h1 className="text-3xl font-bold tracking-tight">İstatistikler</h1>
       <p className="mt-1 text-zinc-600 dark:text-zinc-400">Zincirlerinin genel görünümü.</p>
 

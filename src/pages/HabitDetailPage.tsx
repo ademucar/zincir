@@ -22,6 +22,7 @@ export function HabitDetailPage() {
   if (!habit || !stats) {
     return (
       <section className="py-8">
+        <title>Alışkanlık bulunamadı · Zincir</title>
         <EmptyState
           icon={<SearchX className="size-7" aria-hidden />}
           title="Alışkanlık bulunamadı"
@@ -44,6 +45,7 @@ export function HabitDetailPage() {
 
   return (
     <section>
+      <title>{`${habit.name} · Zincir`}</title>
       <Link
         to="/"
         className="inline-flex items-center gap-1.5 rounded-lg text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"

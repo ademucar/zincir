@@ -85,6 +85,7 @@ export function TodayPage() {
 
   return (
     <section>
+      <title>{habits.length > 0 ? `Bugün (${doneCount}/${habits.length}) · Zincir` : 'Zincir — Alışkanlık Takipçisi'}</title>
       {/* Başlık ve günün ilerlemesi */}
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div className="flex items-center gap-4">

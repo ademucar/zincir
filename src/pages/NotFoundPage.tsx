@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 export function NotFoundPage() {
   return (
     <section className="mx-auto flex max-w-md flex-col items-center py-16 text-center">
+      <title>Sayfa bulunamadı · Zincir</title>
       <div className="grid size-16 place-items-center rounded-2xl bg-zinc-200/70 text-zinc-500 dark:bg-zinc-800 dark:text-zinc-400">
         <Unlink className="size-8" aria-hidden />
       </div>
