@@ -126,10 +126,6 @@ export function HabitDetailPage() {
 
       {/* Takvim */}
       <div className="mt-8 rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900">
-        <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
-          <h2 className="font-semibold tracking-tight">Son 12 hafta</h2>
-          <p className="text-xs text-zinc-500">Unuttuğun bir günü işaretlemek için o güne tıkla.</p>
-        </div>
         <CalendarHeatmap
           completions={habit.completions}
           today={today}
