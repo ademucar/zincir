@@ -103,8 +103,8 @@ Veriler tarayıcının **LocalStorage**'ında saklanır; uygulama backend gerekt
 |---|---|---|
 | **Ekle** | Ana sayfa → "Yeni Alışkanlık" | Form penceresi: ad, açıklama, simge, renk, kategori. Doğrulama hataları alan altında gösterilir. |
 | **Listele** | Ana sayfa | Alışkanlık kartları: simge, ad, bugünkü durum, seri, son 7 günün zinciri. Kategori filtresi ve arama. |
-| **Güncelle** | Kart / detay sayfası | ① **Düzenle:** aynı form, mevcut değerlerle dolu gelir. ② **Bugün yaptım:** tek tıkla işaretle / geri al. |
-| **Sil** | Kart / detay sayfası | Onay penceresi ("Emin misin?"). Silme sonrası bildirim. |
+| **Güncelle** | Kart / detay sayfası | ① **Düzenle:** aynı form, mevcut değerlerle dolu gelir. ② **Bugün yaptım:** tek tıkla işaretle / geri al. ③ **Geçmiş günü düzelt:** detay sayfasındaki takvimden. |
+| **Sil** | Kart / detay sayfası | Onay penceresi. Silme sonrası bildirimde **"geri al"**: alışkanlık eski sırasına döner. |
 
 ---
 
@@ -113,8 +113,8 @@ Veriler tarayıcının **LocalStorage**'ında saklanır; uygulama backend gerekt
 | Yol | Sayfa | İçerik |
 |---|---|---|
 | `/` | **Bugün** | Günün özeti (x / y tamamlandı), filtre + arama, alışkanlık kartları, boş durum |
-| `/aliskanlik/:id` | **Detay** | Son 12 haftanın takvimi, seri ve istatistikler, düzenle / sil |
-| `/istatistikler` | **İstatistikler** | Genel tamamlanma oranı, en uzun seriler, kategori dağılımı |
+| `/aliskanlik/:id` | **Detay** | Ekran genişliğine uyumlu takvim (8–26 hafta), seri ve istatistikler, düzenle / sil |
+| `/istatistikler` | **İstatistikler** | Özet kartları, son 14 günün grafiği, haftanın günlerine göre oran, en istikrarlı alışkanlıklar |
 | `*` | **Bulunamadı** | 404 sayfası, ana sayfaya dönüş |
 
 > Netlify'da `/aliskanlik/...` gibi adresler sayfa yenilendiğinde 404 vermesin diye `netlify.toml`'a tüm yolları `index.html`'e yönlendiren kural eklenir (eğitmenin örneğindeki gibi).
@@ -129,19 +129,22 @@ Veriler tarayıcının **LocalStorage**'ında saklanır; uygulama backend gerekt
 | `Modal` | Erişilebilir pencere (Esc ile kapanır, odak içeride kalır) |
 | `ConfirmDialog` | Silme onayı |
 | `ChainDots` | Son 7 günün halkaları |
-| `CalendarHeatmap` | Detay sayfasındaki 12 haftalık takvim |
+| `CalendarHeatmap` | Detay sayfasındaki takvim (genişliğe uyumlu, renk göstergeli) |
 | `StatCard` | İstatistik kutucuğu |
 | `EmptyState` | Hiç alışkanlık yokken gösterilen ekran + "örnek alışkanlıkları yükle" |
-| `Toast` | İşlem bildirimleri (eklendi, güncellendi, silindi) |
+| `ToastProvider` | İşlem bildirimleri (eklendi, güncellendi, silindi + geri al) |
+| `ProgressRing` | Günün tamamlanma halkası |
+| `ColumnChart` | İstatistik sayfasının sütun grafiği (ipucu + tablo görünümü) |
 
 ## 7. Durum Yönetimi
 
 ```
-LocalStorage ◄──► utils/storage.ts ◄──► context/HabitsContext (useReducer) ◄──► hooks/useHabits ◄──► Sayfalar / Bileşenler
+LocalStorage ◄──► habitsStore (reducer) ◄──► useSyncExternalStore ◄──► HabitsProvider ◄──► useHabits ◄──► Sayfalar
 ```
 
-- Tüm alışkanlıklar tek bir **Context + useReducer** içinde tutulur. İşlemler: `add`, `update`, `toggleToday`, `remove`, `loadSamples`.
-- Her değişiklikten sonra durum LocalStorage'a yazılır.
+- Alışkanlıklar React'ten bağımsız bir depoda (`context/habitsStore.ts`) tutulur ve React'e **`useSyncExternalStore`** ile bağlanır; LocalStorage gibi dış veri kaynakları için React'in önerdiği yöntemdir.
+- Her işlem saf bir **reducer**'dan geçer (`add`, `update`, `toggleDay`, `remove`, `restore`, `replaceAll`) ve sonuç hemen LocalStorage'a yazılır.
+- Başka bir sekmede yapılan değişiklik (`storage` olayı) bu sekmeye de yansır.
 - Hesaplamalar (seri, istatistik) saf fonksiyonlarda (`utils/streak.ts`) yapılır; bileşenler sadece gösterir.
 
 ---
@@ -155,7 +158,7 @@ web/
 │   ├── components/         # Yeniden kullanılabilir arayüz parçaları
 │   ├── pages/              # Sayfa bileşenleri (Bugün, Detay, İstatistikler, 404)
 │   ├── interfaces/         # TypeScript arayüzleri (IHabit, ...)
-│   ├── context/            # HabitsContext (useReducer)
+│   ├── context/            # Alışkanlık deposu, reducer, bağlamlar
 │   ├── hooks/              # useHabits, useTheme
 │   ├── utils/              # storage, date, streak, validation
 │   ├── constants/          # renkler, kategoriler, simgeler, örnek veri
@@ -185,17 +188,19 @@ web/
 
 ## 10. Yönergenin Ötesindeki Özellikler
 
-Zorunlu CRUD'un üzerine eklenecekler:
+Zorunlu CRUD'un üzerine eklenenler:
 
 - Seri (streak) ve en uzun seri hesabı, son 7 günün zinciri
-- 12 haftalık takvim görünümü ve istatistik sayfası
+- Genişliğe uyumlu takvim ve istatistik sayfası (grafikler)
+- Takvimden geçmiş günü düzeltme, silmeyi geri alma
 - Kategori filtresi ve arama
 - Karanlık / aydınlık tema (tercih hatırlanır)
 - Mobil uyumlu (responsive) tasarım
 - Form doğrulama, silme onayı, işlem bildirimleri
 - Boş durumda tek tıkla örnek veri yükleme (Netlify'ı ilk açan değerlendirici boş ekran görmez)
 - Erişilebilirlik: klavye ile kullanım, etiketli form alanları
-- Hesaplama fonksiyonları için birim testleri
+- Hesaplama fonksiyonları için birim testleri (4 saat diliminde tarih testleri dahil)
+- Sekmeler arası senkron, uygulama açıkken gece yarısı gün değişimi
 
 ## 11. Teslim Edilecekler
 
