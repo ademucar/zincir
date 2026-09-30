@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zincir — Alışkanlık Takipçisi</title>
+    <meta
+      name="description"
+      content="Zincir: her gün yaptığın alışkanlığı işaretle, zincirini büyüt. Seri takibi, takvim ve istatistiklerle alışkanlık takipçisi."
+    />
+    <meta name="theme-color" content="#059669" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Tema, sayfa çizilmeden önce uygulanır; karanlık temada beyaz yanıp sönme olmaz. -->
+    <script>
+      try {
+        const saved = localStorage.getItem('zincir.theme')
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (saved === 'dark' || (saved === null && prefersDark)) {
+          document.documentElement.classList.add('dark')
+        }
+      } catch {
+        /* LocalStorage erişilemezse varsayılan (aydınlık) tema kullanılır */
+      }
+    </script>
+  </head>
+  <body>
+    <noscript>Zincir'i kullanmak için JavaScript'i etkinleştirin.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
