@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState, useSyncExternalStore, type ReactNode } from 'react'
 import { createSampleHabits } from '../constants/sampleHabits'
 import { useToday } from '../hooks/useToday'
-import type { IHabit, IHabitFormData } from '../interfaces/habit'
+import type { DateKey, IHabit, IHabitFormData } from '../interfaces/habit'
 import { createId } from '../utils/id'
 import { HabitsContext, type IHabitsContext, type IRemovedHabit } from './habitsContext'
 import { createHabitsStore } from './habitsStore'
@@ -39,12 +39,15 @@ export function HabitsProvider({ children }: { children: ReactNode }) {
     [store],
   )
 
-  const toggleToday = useCallback(
-    (id: string) => {
-      store.dispatch({ type: 'toggleDay', id, day: today, updatedAt: new Date().toISOString() })
+  const toggleDay = useCallback(
+    (id: string, day: DateKey) => {
+      if (day > today) return // gelecekteki gün işaretlenemez
+      store.dispatch({ type: 'toggleDay', id, day, updatedAt: new Date().toISOString() })
     },
     [store, today],
   )
+
+  const toggleToday = useCallback((id: string) => toggleDay(id, today), [toggleDay, today])
 
   const removeHabit = useCallback(
     (id: string): IRemovedHabit | null => {
@@ -76,11 +79,12 @@ export function HabitsProvider({ children }: { children: ReactNode }) {
       addHabit,
       updateHabit,
       toggleToday,
+      toggleDay,
       removeHabit,
       restoreHabit,
       loadSampleHabits,
     }),
-    [habits, today, storageError, store, addHabit, updateHabit, toggleToday, removeHabit, restoreHabit, loadSampleHabits],
+    [habits, today, storageError, store, addHabit, updateHabit, toggleToday, toggleDay, removeHabit, restoreHabit, loadSampleHabits],
   )
 
   return <HabitsContext.Provider value={value}>{children}</HabitsContext.Provider>

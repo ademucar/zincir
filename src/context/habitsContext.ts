@@ -18,6 +18,8 @@ export interface IHabitsContext {
   addHabit: (data: IHabitFormData) => IHabit
   updateHabit: (id: string, data: IHabitFormData) => void
   toggleToday: (id: string) => void
+  /** Geçmiş bir günü işaretler / kaldırır (unutulan günü düzeltmek için); gelecek günler yok sayılır */
+  toggleDay: (id: string, day: DateKey) => void
   removeHabit: (id: string) => IRemovedHabit | null
   restoreHabit: (removed: IRemovedHabit) => void
   loadSampleHabits: () => void
