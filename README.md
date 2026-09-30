@@ -4,9 +4,9 @@
 
 Zincir, "zinciri kırma" yöntemine dayanan bir alışkanlık takip uygulamasıdır: her gün yapılan alışkanlık zincire bir halka ekler. Seri takibi, takvim ve istatistiklerle ilerlemeni gösterir. Veriler tarayıcının LocalStorage'ında saklanır; hesap veya sunucu gerekmez.
 
-**Canlı demo:** _Netlify bağlantısı yayından sonra eklenecek_
+**Canlı demo:** _Vercel bağlantısı yayından sonra eklenecek_
 
-**Teknolojiler:** React 19 · TypeScript · Vite · Tailwind CSS 4 · React Router · Vitest · Netlify
+**Teknolojiler:** React 19 · TypeScript · Vite · Tailwind CSS 4 · React Router · Vitest · Vercel
 
 ![Zincir — Bugün sayfası](docs/screenshots/01-bugun.png)
 
@@ -42,7 +42,7 @@ Zincir, "zinciri kırma" yöntemine dayanan bir alışkanlık takip uygulamasıd
 
 | Yönerge maddesi | Projede |
 |---|---|
-| Modern bir JavaScript kütüphanesi seçimi (Netlify ile yayınlanabilir) | **React 19** + **Vite** (statik çıktı) |
+| Modern bir JavaScript kütüphanesi seçimi (Netlify veya muadili ile yayınlanabilir) | **React 19** + **Vite** (statik çıktı) |
 | LocalStorage kullanılabilir | Tüm veri LocalStorage'da — [`src/utils/storage.ts`](src/utils/storage.ts) |
 | Kütüphane / çerçeve kurulumu, IDE ile açma | `npm create vite` (React + TypeScript), Visual Studio Code |
 | `Components`, `Pages`, `Interfaces` klasörleri | [`src/components`](src/components), [`src/pages`](src/pages), [`src/interfaces`](src/interfaces) |
@@ -50,7 +50,7 @@ Zincir, "zinciri kırma" yöntemine dayanan bir alışkanlık takip uygulamasıd
 | TODO App benzeri; 1 Ekle, 1 Listele, 1 Güncelle, 1 Sil | Yukarıdaki [dört işlem](#yönergedeki-dört-işlem) |
 | En az 1 ekran görüntüsü | [8 ekran görüntüsü](#ekran-görüntüleri) |
 | GitHub'da public repo | Bu repo |
-| Netlify veya muadili ile yayın | [`netlify.toml`](netlify.toml), canlı demo bağlantısı yukarıda |
+| Netlify veya muadili ile yayın | **Vercel** ([`vercel.json`](vercel.json)); Netlify için de hazır ([`netlify.toml`](netlify.toml)). Canlı demo bağlantısı yukarıda. |
 
 ---
 
@@ -106,7 +106,7 @@ docs/
 - **Tarihler yerel saate göre tutulur:** Günler `YYYY-MM-DD` anahtarlarıyla saklanır ve `toISOString()` (UTC) kullanılmaz. Aksi halde Türkiye'de gece 00:00–03:00 arasında işaretlenen alışkanlık bir önceki güne yazılırdı.
 - **Adil istatistik:** Oranlar hesaplanırken o gün henüz eklenmemiş alışkanlıklar paydaya katılmaz; yeni bir alışkanlık geçmiş günlerin oranını düşürmez.
 - **Sürümlü depolama:** Veri `{ version: 1, habits: [...] }` biçiminde saklanır. Okunamayan kayıtlar silinmeden önce yedek anahtara kopyalanır.
-- **Netlify yönlendirmesi:** `netlify.toml`'daki kural sayesinde `/aliskanlik/...` gibi adresler sayfa yenilendiğinde 404 vermez.
+- **Tek sayfalı uygulama yönlendirmesi:** `vercel.json` (ve `netlify.toml`) kuralı sayesinde `/aliskanlik/...` gibi adresler doğrudan açıldığında ya da sayfa yenilendiğinde 404 vermez; yönlendirmeyi React Router yapar.
 
 ## Testler
 
@@ -147,12 +147,15 @@ Yayın öncesi ayrıca gerçek tarayıcıda (Edge) **uçtan uca tarama** yapılm
 
 ---
 
-## Yayın (Netlify)
+## Yayın (Vercel)
 
-Proje Netlify'a hazırdır. Netlify'da **Add new site → Import an existing project** ile bu GitHub reposu seçildiğinde derleme ayarları `netlify.toml`'dan otomatik okunur:
+Uygulama [Vercel](https://vercel.com)'de yayınlanmaktadır. Vercel'de **Add New → Project** ile bu GitHub reposu içe aktarıldığında ayarlar [`vercel.json`](vercel.json)'dan okunur; her `main` güncellemesinde otomatik yeniden yayınlanır.
 
 | Ayar | Değer |
 |---|---|
+| Framework | Vite |
 | Build command | `npm run build` |
-| Publish directory | `dist` |
-| Node sürümü | 24 |
+| Output directory | `dist` |
+| Yönlendirme | Tüm adresler `index.html`'e (React Router) |
+
+Netlify tercih edilirse [`netlify.toml`](netlify.toml) aynı ayarları içerir; ek bir düzenleme gerekmez.

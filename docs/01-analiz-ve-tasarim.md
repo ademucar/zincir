@@ -18,7 +18,7 @@ Yönerge, eğitimde işlenen **TODO App** yapısının katılımcının kendi fi
 
 Farkı: tamamlanma bilgisi tek bir `true/false` değil, **gün gün tutulur**. Böylece seri (streak), takvim ve istatistik üretilebilir.
 
-Veriler tarayıcının **LocalStorage**'ında saklanır; uygulama backend gerektirmeden Netlify'da tam olarak çalışır.
+Veriler tarayıcının **LocalStorage**'ında saklanır; uygulama backend gerektirmeden Vercel / Netlify gibi statik barındırma servislerinde tam olarak çalışır.
 
 ---
 
@@ -26,7 +26,7 @@ Veriler tarayıcının **LocalStorage**'ında saklanır; uygulama backend gerekt
 
 | # | Yönerge maddesi | Projedeki karşılığı |
 |---|---|---|
-| Y1 | Modern JS kütüphanesi seçimi, Netlify ile yayınlanabilir | **React 19** + **Vite 7** (statik çıktı, Netlify uyumlu) |
+| Y1 | Modern JS kütüphanesi seçimi, Netlify ile yayınlanabilir | **React 19** + **Vite 8** (statik çıktı; Vercel / Netlify uyumlu) |
 | Y2 | LocalStorage kullanılabilir | Tüm veri LocalStorage'da (`utils/storage.ts`) |
 | Y3 | Kütüphane kurulumu | `npm create vite` ile React + TypeScript şablonu |
 | Y4 | Kurulumu bir IDE ile açma | Visual Studio Code |
@@ -35,7 +35,7 @@ Veriler tarayıcının **LocalStorage**'ında saklanır; uygulama backend gerekt
 | Y7 | Ekle, Listele, Güncelle, Sil işlemleri | Bölüm 4 |
 | Y8 | En az 1 ekran görüntüsü | `docs/screenshots/` + README |
 | Y9–Y10 | GitHub public repo, link teslim formunda | GitHub |
-| Y11 | Netlify'da yayın, link teslimde | `netlify.toml` + Netlify |
+| Y11 | Netlify veya muadili ile yayın, link teslimde | **Vercel** (`vercel.json`); Netlify için de hazır (`netlify.toml`) |
 
 **Teknoloji seçimi gerekçesi:** Eğitmenin örnek projelerinde kullanılan yapı (React + TypeScript + Vite + Tailwind CSS 4 + ESLint) temel alınmıştır. Yönergedeki **Interfaces** klasörü TypeScript arayüzleri için kullanılır.
 
@@ -117,7 +117,7 @@ Veriler tarayıcının **LocalStorage**'ında saklanır; uygulama backend gerekt
 | `/istatistikler` | **İstatistikler** | Özet kartları, son 14 günün grafiği, haftanın günlerine göre oran, en istikrarlı alışkanlıklar |
 | `*` | **Bulunamadı** | 404 sayfası, ana sayfaya dönüş |
 
-> Netlify'da `/aliskanlik/...` gibi adresler sayfa yenilendiğinde 404 vermesin diye `netlify.toml`'a tüm yolları `index.html`'e yönlendiren kural eklenir (eğitmenin örneğindeki gibi).
+> `/aliskanlik/...` gibi adresler sayfa yenilendiğinde 404 vermesin diye `vercel.json` ve `netlify.toml`'a tüm yolları `index.html`'e yönlendiren kural eklenir (eğitmenin örneğindeki gibi).
 
 ## 6. Bileşenler (`src/components`)
 
@@ -166,7 +166,8 @@ web/
 │   ├── main.tsx
 │   └── index.css           # Tailwind
 ├── docs/                   # Analiz, ekran görüntüleri
-├── netlify.toml
+├── vercel.json             # Vercel yayın ayarları
+├── netlify.toml            # Netlify yayın ayarları (alternatif)
 ├── package.json
 └── README.md
 ```
@@ -179,12 +180,12 @@ web/
 |---|---|
 | React 19 | Arayüz |
 | TypeScript | Tip güvenliği, `interfaces` |
-| Vite 7 | Geliştirme sunucusu ve derleme |
+| Vite 8 | Geliştirme sunucusu ve derleme |
 | Tailwind CSS 4 | Stil, responsive tasarım, karanlık tema |
 | React Router | Sayfalar arası geçiş |
 | ESLint | Kod denetimi |
 | Vitest | Seri / tarih hesaplamalarının birim testleri |
-| Netlify | Yayın |
+| Vercel | Yayın (Netlify'a da hazır) |
 
 ## 10. Yönergenin Ötesindeki Özellikler
 
@@ -197,7 +198,7 @@ Zorunlu CRUD'un üzerine eklenenler:
 - Karanlık / aydınlık tema (tercih hatırlanır)
 - Mobil uyumlu (responsive) tasarım
 - Form doğrulama, silme onayı, işlem bildirimleri
-- Boş durumda tek tıkla örnek veri yükleme (Netlify'ı ilk açan değerlendirici boş ekran görmez)
+- Boş durumda tek tıkla örnek veri yükleme (canlı bağlantıyı ilk açan değerlendirici boş ekran görmez)
 - Erişilebilirlik: klavye ile kullanım, etiketli form alanları
 - Hesaplama fonksiyonları için birim testleri (4 saat diliminde tarih testleri dahil)
 - Sekmeler arası senkron, uygulama açıkken gece yarısı gün değişimi
@@ -208,5 +209,5 @@ Zorunlu CRUD'un üzerine eklenenler:
 |---|---|
 | Kaynak kod | GitHub (public) |
 | Ekran görüntüleri (en az 1) | `docs/screenshots/`, README |
-| Canlı uygulama | Netlify bağlantısı |
+| Canlı uygulama | Vercel bağlantısı |
 | Kurulum ve kullanım | `README.md` |
