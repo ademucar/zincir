@@ -74,7 +74,8 @@ Uygulama **http://localhost:5173** adresinde açılır. İlk açılışta "Örne
 | `npm run dev` | Geliştirme sunucusu |
 | `npm run build` | Tip kontrolü ve üretim derlemesi (`dist/`) |
 | `npm run preview` | Üretim derlemesini yerelde çalıştırır |
-| `npm test` | Birim testleri (Vitest) |
+| `npm test` | Tüm testler (Vitest) |
+| `npm run test:coverage` | Testler + kapsam raporu |
 | `npm run lint` | ESLint ile kod denetimi |
 
 ---
@@ -113,9 +114,16 @@ docs/
 npm test
 ```
 
-**77 birim testi**, 10 dosya. Kapsam: tarih işlemleri (ay/yıl geçişi, artık yıl), seri ve oran hesapları, takvim ızgarası, istatistikler, form doğrulama, LocalStorage (bozuk veri, dolu depolama), reducer ve depo (sekmeler arası senkron).
+**91 test**, 12 dosya · kod kapsamı **%94** (`npm run test:coverage`)
 
-Tarih hesapları **4 farklı saat diliminde** (İstanbul, UTC, UTC+14, UTC-7) ve yaz saati geçişinde ayrıca test edilir.
+| Katman | Test edilenler |
+|---|---|
+| **Arayüz (entegrasyon)** | Yönergedeki dört işlem kullanıcı gibi test edilir: ekle (doğrulama, tekrar eden ad), listele, güncelle (düzenle, bugün yaptım), sil (vazgeç, geri al). Arama / kategori filtresi, detay, istatistik ve bulunamadı sayfaları. — Testing Library + jsdom |
+| **Hesaplamalar** | Tarih (ay/yıl geçişi, artık yıl), seri ve oran hesapları, takvim ızgarası, istatistikler, form doğrulama |
+| **Veri** | LocalStorage (bozuk veri, dolu depolama), reducer, depo (sekmeler arası senkron) |
+| **Zaman** | Tarih hesapları **4 saat diliminde** (İstanbul, UTC, UTC+14, UTC-7) ve yaz saati geçişinde; gece yarısı gün değişimi |
+
+Yayın öncesi ayrıca gerçek tarayıcıda (Edge) **uçtan uca tarama** yapılmıştır: 49 kullanıcı senaryosu, konsol hatası 0, ve 11 ekranda (açık/koyu tema, masaüstü/mobil) **axe-core erişilebilirlik taramasında 0 ihlal** (WCAG AA renk kontrastı dahil).
 
 ---
 
