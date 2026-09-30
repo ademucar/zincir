@@ -31,11 +31,11 @@ export function HabitCard({ habit, stats, today, onToggle, onEdit, onDelete }: H
         </span>
 
         <div className="min-w-0 flex-1">
-          <h3 className="truncate font-semibold tracking-tight">
+          <h2 className="truncate font-semibold tracking-tight">
             <Link to={`/aliskanlik/${habit.id}`} className="rounded hover:underline">
               {habit.name}
             </Link>
-          </h3>
+          </h2>
           <p className="mt-0.5 truncate text-sm text-zinc-500 dark:text-zinc-400">
             <span className={`font-medium ${palette.text}`}>{HABIT_CATEGORIES[habit.category]}</span>
             {habit.description && <> · {habit.description}</>}
@@ -60,7 +60,7 @@ export function HabitCard({ habit, stats, today, onToggle, onEdit, onDelete }: H
       <footer className="mt-5 flex items-center justify-between gap-3">
         <p
           className={`flex items-center gap-1.5 text-sm font-medium ${
-            currentStreak > 0 ? 'text-orange-600 dark:text-orange-400' : 'text-zinc-500'
+            currentStreak > 0 ? 'text-orange-700 dark:text-orange-400' : 'text-zinc-500 dark:text-zinc-400'
           }`}
         >
           <Flame className={`size-4 ${currentStreak > 0 ? 'fill-orange-500/20' : ''}`} aria-hidden />
@@ -99,7 +99,7 @@ function IconButton({ label, onClick, danger, children }: IconButtonProps) {
       onClick={onClick}
       aria-label={label}
       title={label}
-      className={`grid size-9 place-items-center rounded-lg text-zinc-500 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 ${
+      className={`grid size-9 place-items-center rounded-lg text-zinc-500 dark:text-zinc-400 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800 ${
         danger ? 'hover:text-rose-600 dark:hover:text-rose-400' : 'hover:text-zinc-900 dark:hover:text-white'
       }`}
     >

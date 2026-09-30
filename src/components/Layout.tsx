@@ -82,7 +82,7 @@ export function Layout() {
         <Outlet />
       </main>
 
-      <footer className="border-t border-zinc-200/80 py-6 text-center text-xs text-zinc-500 dark:border-zinc-800/80">
+      <footer className="border-t border-zinc-200/80 py-6 text-center text-xs text-zinc-500 dark:text-zinc-400 dark:border-zinc-800/80">
         Zincir · Verileriniz yalnızca bu tarayıcıda saklanır.
       </footer>
     </div>

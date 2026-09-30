@@ -53,13 +53,13 @@ export function CalendarHeatmap({ completions, today, createdDay, color, onToggl
     <div>
       <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
         <h2 className="font-semibold tracking-tight">Son {weekCount} hafta</h2>
-        <p className="text-xs text-zinc-500">Unuttuğun bir günü işaretlemek için o güne tıkla.</p>
+        <p className="text-xs text-zinc-500 dark:text-zinc-400">Unuttuğun bir günü işaretlemek için o güne tıkla.</p>
       </div>
 
       <div ref={containerRef} className="overflow-x-auto [scrollbar-width:thin]">
         <div className="inline-flex gap-1.5">
           {/* Gün adları */}
-          <div className="grid w-8 grid-rows-[1.25rem_repeat(7,1.75rem)] gap-1.5 text-[11px] text-zinc-500" aria-hidden>
+          <div className="grid w-8 grid-rows-[1.25rem_repeat(7,1.75rem)] gap-1.5 text-[11px] text-zinc-500 dark:text-zinc-400" aria-hidden>
             <span />
             {WEEKDAY_LABELS.map((label, i) => (
               <span key={i} className="flex items-center">
@@ -70,7 +70,7 @@ export function CalendarHeatmap({ completions, today, createdDay, color, onToggl
 
           {weeks.map((week, weekIndex) => (
             <div key={weekIndex} className="grid grid-rows-[1.25rem_repeat(7,1.75rem)] gap-1.5">
-              <span className="text-[11px] whitespace-nowrap text-zinc-500" aria-hidden>
+              <span className="text-[11px] whitespace-nowrap text-zinc-500 dark:text-zinc-400" aria-hidden>
                 {week.monthLabel}
               </span>
               {week.days.map((day, dayIndex) => {

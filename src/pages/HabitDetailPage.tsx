@@ -30,7 +30,7 @@ export function HabitDetailPage() {
         >
           <Link
             to="/"
-            className="rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700"
+            className="rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-800"
           >
             Bugün sayfasına dön
           </Link>

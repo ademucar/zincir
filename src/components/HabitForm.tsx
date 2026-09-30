@@ -65,7 +65,7 @@ export function HabitForm({ initialValues, habits, editingId, submitLabel, onSub
           <label htmlFor={`${id}-name`} className="text-sm font-medium">
             Alışkanlık adı
           </label>
-          <span className="text-xs text-zinc-500 tabular-nums">
+          <span className="text-xs text-zinc-500 dark:text-zinc-400 tabular-nums">
             {values.name.trim().length}/{NAME_MAX_LENGTH}
           </span>
         </div>
@@ -90,9 +90,9 @@ export function HabitForm({ initialValues, habits, editingId, submitLabel, onSub
       <div>
         <div className="flex items-baseline justify-between">
           <label htmlFor={`${id}-description`} className="text-sm font-medium">
-            Açıklama <span className="font-normal text-zinc-500">(isteğe bağlı)</span>
+            Açıklama <span className="font-normal text-zinc-500 dark:text-zinc-400">(isteğe bağlı)</span>
           </label>
-          <span className="text-xs text-zinc-500 tabular-nums">
+          <span className="text-xs text-zinc-500 dark:text-zinc-400 tabular-nums">
             {values.description.trim().length}/{DESCRIPTION_MAX_LENGTH}
           </span>
         </div>
@@ -177,7 +177,7 @@ export function HabitForm({ initialValues, habits, editingId, submitLabel, onSub
                 data-field={index === 0 ? 'category' : undefined}
                 className="peer sr-only"
               />
-              <span className="inline-block cursor-pointer rounded-full border border-zinc-300 px-3.5 py-1.5 text-sm font-medium text-zinc-700 transition-colors peer-checked:border-emerald-600 peer-checked:bg-emerald-600 peer-checked:text-white peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-emerald-500 hover:border-zinc-400 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500">
+              <span className="inline-block cursor-pointer rounded-full border border-zinc-300 px-3.5 py-1.5 text-sm font-medium text-zinc-700 transition-colors peer-checked:border-emerald-700 peer-checked:bg-emerald-700 peer-checked:text-white peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-emerald-500 hover:border-zinc-400 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500">
                 {HABIT_CATEGORIES[category]}
               </span>
             </label>
@@ -196,7 +196,7 @@ export function HabitForm({ initialValues, habits, editingId, submitLabel, onSub
         </button>
         <button
           type="submit"
-          className="rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700"
+          className="rounded-xl bg-emerald-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-800"
         >
           {submitLabel}
         </button>

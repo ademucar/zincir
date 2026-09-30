@@ -56,7 +56,7 @@ export function StatsPage() {
           >
             <Link
               to="/"
-              className="rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700"
+              className="rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-800"
             >
               Alışkanlık ekle
             </Link>
@@ -102,7 +102,7 @@ export function StatsPage() {
       {/* Son 14 gün */}
       <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900">
         <h2 className="font-semibold tracking-tight">Son 14 gün</h2>
-        <p className="mt-0.5 mb-5 text-sm text-zinc-500">Her gün alışkanlıklarının yüzde kaçını tamamladın?</p>
+        <p className="mt-0.5 mb-5 text-sm text-zinc-500 dark:text-zinc-400">Her gün alışkanlıklarının yüzde kaçını tamamladın?</p>
         <ColumnChart data={dailyData} highlightKey={today} title="Son 14 günün günlük tamamlanma oranı" />
       </div>
 
@@ -110,7 +110,7 @@ export function StatsPage() {
         {/* Haftanın günleri */}
         <div className="rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900">
           <h2 className="font-semibold tracking-tight">Haftanın günlerine göre</h2>
-          <p className="mt-0.5 mb-5 text-sm text-zinc-500">
+          <p className="mt-0.5 mb-5 text-sm text-zinc-500 dark:text-zinc-400">
             {bestWeekday.total > 0 ? (
               <>
                 En verimli günün <strong className="font-semibold text-zinc-800 dark:text-zinc-200">{WEEKDAY_LONG[bestWeekday.weekday]}</strong> (son 8 hafta)
@@ -129,7 +129,7 @@ export function StatsPage() {
         {/* En istikrarlı alışkanlıklar */}
         <div className="rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900">
           <h2 className="font-semibold tracking-tight">En istikrarlı alışkanlıklar</h2>
-          <p className="mt-0.5 mb-5 text-sm text-zinc-500">Son 30 günde tamamlanma oranına göre</p>
+          <p className="mt-0.5 mb-5 text-sm text-zinc-500 dark:text-zinc-400">Son 30 günde tamamlanma oranına göre</p>
           <ol className="space-y-4">
             {ranking.map(({ habit, rate30, currentStreak }) => (
               <li key={habit.id}>
@@ -139,7 +139,7 @@ export function StatsPage() {
                     {habit.name}
                   </Link>
                   {currentStreak > 0 && (
-                    <span className="flex items-center gap-0.5 text-xs text-zinc-500" title={`${currentStreak} günlük seri`}>
+                    <span className="flex items-center gap-0.5 text-xs text-zinc-500 dark:text-zinc-400" title={`${currentStreak} günlük seri`}>
                       <Flame className="size-3.5 text-orange-500" aria-hidden />
                       <span className="sr-only">Güncel seri:</span>
                       {currentStreak}

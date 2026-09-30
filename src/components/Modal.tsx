@@ -60,7 +60,7 @@ export function Modal({ open, onClose, title, description, children }: ModalProp
             <button
               type="button"
               onClick={onClose}
-              className="-mt-1 -mr-2 grid size-9 place-items-center rounded-lg text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-white"
+              className="-mt-1 -mr-2 grid size-9 place-items-center rounded-lg text-zinc-500 dark:text-zinc-400 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-white"
               aria-label="Pencereyi kapat"
             >
               <X className="size-5" aria-hidden />

@@ -45,7 +45,7 @@ interface ColorClasses {
   soft: string
   /** Vurgulu metin */
   text: string
-  /** Tamamlandı butonu */
+  /** Tamamlandı butonu (beyaz yazı ile kontrast ≥ 4.5:1 olan ton) */
   button: string
   /** Seçili renk halkası */
   ring: string
@@ -59,7 +59,7 @@ export const HABIT_COLORS: Record<HabitColor, ColorClasses> = {
     solid: 'bg-emerald-500',
     soft: 'bg-emerald-100 dark:bg-emerald-500/15',
     text: 'text-emerald-700 dark:text-emerald-300',
-    button: 'bg-emerald-500 hover:bg-emerald-600 border-emerald-500',
+    button: 'bg-emerald-700 hover:bg-emerald-800 border-emerald-700',
     ring: 'ring-emerald-500',
   },
   sky: {
@@ -67,7 +67,7 @@ export const HABIT_COLORS: Record<HabitColor, ColorClasses> = {
     solid: 'bg-sky-500',
     soft: 'bg-sky-100 dark:bg-sky-500/15',
     text: 'text-sky-700 dark:text-sky-300',
-    button: 'bg-sky-500 hover:bg-sky-600 border-sky-500',
+    button: 'bg-sky-700 hover:bg-sky-800 border-sky-700',
     ring: 'ring-sky-500',
   },
   violet: {
@@ -75,7 +75,7 @@ export const HABIT_COLORS: Record<HabitColor, ColorClasses> = {
     solid: 'bg-violet-500',
     soft: 'bg-violet-100 dark:bg-violet-500/15',
     text: 'text-violet-700 dark:text-violet-300',
-    button: 'bg-violet-500 hover:bg-violet-600 border-violet-500',
+    button: 'bg-violet-600 hover:bg-violet-700 border-violet-600',
     ring: 'ring-violet-500',
   },
   amber: {
@@ -83,7 +83,7 @@ export const HABIT_COLORS: Record<HabitColor, ColorClasses> = {
     solid: 'bg-amber-500',
     soft: 'bg-amber-100 dark:bg-amber-500/15',
     text: 'text-amber-700 dark:text-amber-300',
-    button: 'bg-amber-500 hover:bg-amber-600 border-amber-500',
+    button: 'bg-amber-700 hover:bg-amber-800 border-amber-700',
     ring: 'ring-amber-500',
   },
   rose: {
@@ -91,7 +91,7 @@ export const HABIT_COLORS: Record<HabitColor, ColorClasses> = {
     solid: 'bg-rose-500',
     soft: 'bg-rose-100 dark:bg-rose-500/15',
     text: 'text-rose-700 dark:text-rose-300',
-    button: 'bg-rose-500 hover:bg-rose-600 border-rose-500',
+    button: 'bg-rose-600 hover:bg-rose-700 border-rose-600',
     ring: 'ring-rose-500',
   },
   slate: {
@@ -99,7 +99,7 @@ export const HABIT_COLORS: Record<HabitColor, ColorClasses> = {
     solid: 'bg-slate-500',
     soft: 'bg-slate-200 dark:bg-slate-500/20',
     text: 'text-slate-700 dark:text-slate-300',
-    button: 'bg-slate-500 hover:bg-slate-600 border-slate-500',
+    button: 'bg-slate-600 hover:bg-slate-700 border-slate-600',
     ring: 'ring-slate-500',
   },
 }

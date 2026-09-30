@@ -35,7 +35,7 @@ export function ColumnChart({ data, highlightKey, title }: ColumnChartProps) {
     <figure>
       <div className="flex gap-2">
         {/* Y ekseni */}
-        <div className="relative h-40 w-9 shrink-0 text-right text-[11px] text-zinc-500 tabular-nums" aria-hidden>
+        <div className="relative h-40 w-9 shrink-0 text-right text-[11px] text-zinc-500 dark:text-zinc-400 tabular-nums" aria-hidden>
           {TICKS.map((tick) => (
             <span key={tick} className="absolute right-0 -translate-y-1/2" style={{ top: `${100 - tick}%` }}>
               %{tick}
@@ -99,7 +99,7 @@ export function ColumnChart({ data, highlightKey, title }: ColumnChartProps) {
                       >
                         <span className="block text-sm font-semibold">%{datum.value}</span>
                         <span className="block text-zinc-300">{datum.label}</span>
-                        {datum.detail && <span className="block text-zinc-400">{datum.detail}</span>}
+                        {datum.detail && <span className="block text-zinc-300">{datum.detail}</span>}
                       </span>
                     )}
                   </li>
@@ -109,7 +109,7 @@ export function ColumnChart({ data, highlightKey, title }: ColumnChartProps) {
           </div>
 
           {/* X ekseni */}
-          <div className="mt-2 flex gap-0.5 text-[11px] text-zinc-500" aria-hidden>
+          <div className="mt-2 flex gap-0.5 text-[11px] text-zinc-500 dark:text-zinc-400" aria-hidden>
             {data.map((datum) => (
               <span
                 key={datum.key}
@@ -124,12 +124,12 @@ export function ColumnChart({ data, highlightKey, title }: ColumnChartProps) {
 
       {/* Tablo görünümü: grafiği görmeyen / okuyamayan kullanıcılar için eşdeğer içerik */}
       <details className="mt-4 text-sm">
-        <summary className="w-fit cursor-pointer rounded text-xs font-medium text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200">
+        <summary className="w-fit cursor-pointer rounded text-xs font-medium text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200">
           Tablo olarak göster
         </summary>
         <table className="mt-3 w-full text-left text-sm">
           <caption className="sr-only">{title}</caption>
-          <thead className="text-xs text-zinc-500">
+          <thead className="text-xs text-zinc-500 dark:text-zinc-400">
             <tr>
               <th scope="col" className="py-1.5 font-medium">Gün</th>
               <th scope="col" className="py-1.5 text-right font-medium">Oran</th>
@@ -141,7 +141,7 @@ export function ColumnChart({ data, highlightKey, title }: ColumnChartProps) {
               <tr key={datum.key}>
                 <td className="py-1.5">{datum.label}</td>
                 <td className="py-1.5 text-right tabular-nums">%{datum.value}</td>
-                <td className="py-1.5 text-right text-zinc-500">{datum.detail ?? '—'}</td>
+                <td className="py-1.5 text-right text-zinc-500 dark:text-zinc-400">{datum.detail ?? '—'}</td>
               </tr>
             ))}
           </tbody>

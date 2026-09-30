@@ -45,7 +45,7 @@ export function ChainDots({ days, today, color }: ChainDotsProps) {
               </span>
             </div>
             <span
-              className={`text-[11px] leading-none ${isToday ? 'font-semibold text-zinc-900 dark:text-white' : 'text-zinc-500'}`}
+              className={`text-[11px] leading-none ${isToday ? 'font-semibold text-zinc-900 dark:text-white' : 'text-zinc-500 dark:text-zinc-400'}`}
               aria-hidden
             >
               {isToday ? 'Bugün' : formatShortWeekday(day.date)}

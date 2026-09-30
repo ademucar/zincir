@@ -91,7 +91,7 @@ export function TodayPage() {
         <div className="flex items-center gap-4">
           {habits.length > 0 && <ProgressRing done={doneCount} total={habits.length} />}
           <div>
-            <p className="text-sm font-medium text-zinc-500 capitalize dark:text-zinc-400">{formatLongDate(today)}</p>
+            <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400 capitalize dark:text-zinc-400">{formatLongDate(today)}</p>
             <h1 className="text-3xl font-bold tracking-tight">Bugün</h1>
             {habits.length > 0 && (
               <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{progressMessage(doneCount, habits.length)}</p>
@@ -103,7 +103,7 @@ export function TodayPage() {
           <button
             type="button"
             onClick={openAdd}
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-800"
           >
             <Plus className="size-4" strokeWidth={2.5} aria-hidden />
             Yeni alışkanlık
@@ -121,7 +121,7 @@ export function TodayPage() {
             <button
               type="button"
               onClick={openAdd}
-              className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-700"
+              className="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-emerald-800"
             >
               <Plus className="size-4" strokeWidth={2.5} aria-hidden />
               İlk alışkanlığını ekle
