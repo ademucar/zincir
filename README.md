@@ -4,7 +4,7 @@
 
 Zincir, "zinciri kırma" yöntemine dayanan bir alışkanlık takip uygulamasıdır: her gün yapılan alışkanlık zincire bir halka ekler. Seri takibi, takvim ve istatistiklerle ilerlemeni gösterir. Veriler tarayıcının LocalStorage'ında saklanır; hesap veya sunucu gerekmez.
 
-**Canlı demo:** _Vercel bağlantısı yayından sonra eklenecek_
+**Canlı demo:** [zincir-aucr.vercel.app](https://zincir-aucr.vercel.app)
 
 **Teknolojiler:** React 19 · TypeScript · Vite · Tailwind CSS 4 · React Router · Vitest · Vercel
 
@@ -149,7 +149,7 @@ Yayın öncesi ayrıca gerçek tarayıcıda (Edge) **uçtan uca tarama** yapılm
 
 ## Yayın (Vercel)
 
-Uygulama [Vercel](https://vercel.com)'de yayınlanmaktadır. Vercel'de **Add New → Project** ile bu GitHub reposu içe aktarıldığında ayarlar [`vercel.json`](vercel.json)'dan okunur; her `main` güncellemesinde otomatik yeniden yayınlanır.
+Uygulama [Vercel](https://vercel.com)'de yayınlanmaktadır: **https://zincir-aucr.vercel.app**. Vercel'de **Add New → Project** ile bu GitHub reposu içe aktarıldığında ayarlar [`vercel.json`](vercel.json)'dan okunur; her `main` güncellemesinde otomatik yeniden yayınlanır.
 
 | Ayar | Değer |
 |---|---|
